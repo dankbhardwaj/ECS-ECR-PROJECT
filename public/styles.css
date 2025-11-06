@@ -1,0 +1,119 @@
+:root{
+  --bg1:#0f1020; --bg2:#17193a; --glass:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.16); --text:#e9ecf1; --muted:#bcc3d6;
+  --accent:#88f0ff; --accent2:#c3ff7c;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text); background: #0b0c1a; overflow-x:hidden;
+}
+
+/* Animated gradient background */
+.bg{
+  position:fixed; inset:-20vmax; filter:blur(60px); z-index:-2;
+  background: radial-gradient(40vmax 40vmax at 20% 20%, #2b7cff33, transparent 60%),
+              radial-gradient(40vmax 40vmax at 80% 30%, #70ffbb33, transparent 60%),
+              radial-gradient(40vmax 40vmax at 50% 80%, #ff6ec733, transparent 60%),
+              linear-gradient(120deg, var(--bg1), var(--bg2));
+  animation: bgShift 30s ease-in-out infinite alternate;
+}
+@keyframes bgShift{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(2%, -2%, 0) scale(1.05)}
+}
+
+/* Floating particles (GPU-friendly) */
+.particles{
+  position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, #ffffff40 60%, transparent 61%),
+    radial-gradient(2px 2px at 30% 80%, #ffffff30 60%, transparent 61%),
+    radial-gradient(2px 2px at 70% 40%, #ffffff25 60%, transparent 61%),
+    radial-gradient(2px 2px at 90% 60%, #ffffff20 60%, transparent 61%);
+  animation: float 18s linear infinite;
+  opacity:.7;
+}
+@keyframes float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-100px)}
+}
+
+/* Layout */
+.container{
+  min-height:100vh; display:grid; place-items:center; padding:6rem 1.5rem 10rem;
+}
+.card{
+  width:min(900px, 92vw); padding:2.2rem; border-radius:24px; border:1px solid var(--border);
+  position:relative; overflow:hidden;
+}
+.glass{ background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); backdrop-filter: blur(12px); }
+
+/* Accents */
+.badge{
+  position:absolute; top:14px; right:14px; font-size:.75rem; letter-spacing:.06em; text-transform:uppercase;
+  padding:.45rem .7rem; border-radius:999px; background:rgba(136,240,255,.15); border:1px solid rgba(136,240,255,.4);
+}
+h1{ font-size: clamp(1.8rem, 2.2rem + 1.5vw, 3.2rem); margin:0 0 .6rem; line-height:1.05; }
+.accent{
+  background:linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 0 24px #88f0ff22;
+}
+.sub{ color:var(--muted); margin:.3rem 0 1.6rem; line-height:1.6 }
+
+/* Buttons */
+.actions{ display:flex; gap:.8rem; flex-wrap:wrap; margin-bottom:1rem }
+.btn{
+  border:1px solid var(--border); background:var(--glass); color:var(--text);
+  padding:.8rem 1rem; border-radius:14px; font-weight:600; cursor:pointer; transition:transform .15s ease, background .2s ease, border-color .2s ease;
+  text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+}
+.btn:hover{ transform:translateY(-2px); border-color:#ffffff44; }
+.btn:active{ transform:translateY(0); }
+.btn.primary{
+  background:linear-gradient(180deg, #88f0ff33, #88f0ff22);
+  border-color:#88f0ff66; box-shadow:0 10px 30px #88f0ff1a, inset 0 1px 0 #ffffff22;
+}
+.btn.ghost{ background:transparent }
+
+/* Result box with shimmer while loading */
+.result{
+  width:100%; min-height:64px; margin-top:.6rem; padding:1rem; border-radius:14px;
+  background:rgba(0,0,0,.35); border:1px solid var(--border); overflow:auto;
+}
+.shimmer{
+  position:relative; color:#bcd;
+}
+.shimmer.loading::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(90deg, transparent, #ffffff0a, transparent);
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer{
+  0%{ transform: translateX(-100%) }
+  100%{ transform: translateX(100%) }
+}
+
+/* Footer meta dot with pulse */
+.meta{ display:flex; align-items:center; gap:.6rem; margin-top:1rem; color:#9fb1c7; font-size:.95rem }
+.meta .dot{
+  width:10px; height:10px; border-radius:999px; background:radial-gradient(circle at 40% 40%, #76ffb0, #30d17a);
+  box-shadow:0 0 16px #3cff9a88;
+  animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{ transform:scale(1) }
+  50%{ transform:scale(1.35) }
+}
+
+/* Decorative wave */
+.wave{
+  position:fixed; bottom:-1px; left:0; width:100%; height:220px; opacity:.3; mix-blend:screen;
+  fill:url(#g);
+}
+.wave path{
+  fill:linear-gradient(180deg, #88f0ff33, #c3ff7c22);
+}

@@ -1,0 +1,13 @@
+{
+  "name": "animated-serverless-app",
+  "version": "1.0.0",
+  "description": "Serverless container app with animated UI for ECS Fargate",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

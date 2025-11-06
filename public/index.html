@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Fargate Demo — Animated App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <!-- Animated gradient background -->
+  <div class="bg"></div>
+  <!-- Floating particles -->
+  <div class="particles" aria-hidden="true"></div>
+
+  <main class="container">
+    <section class="card glass">
+      <div class="badge">ECS Fargate</div>
+      <h1>
+        Serverless Containers, <span class="accent">Stylishly</span> Done
+      </h1>
+      <p class="sub">
+        Deployed via <strong>Fargate</strong>, image from <strong>ECR</strong>, logs in <strong>CloudWatch</strong>.
+        This demo shows smooth UI animations optimized for performance.
+      </p>
+
+      <div class="actions">
+        <button id="ping" class="btn primary">Ping /api/hello</button>
+        <a class="btn ghost" href="/api/health" target="_blank" rel="noopener">Open /api/health</a>
+      </div>
+
+      <pre id="result" class="result shimmer">// Click “Ping /api/hello” to test the API…</pre>
+
+      <footer class="meta">
+        <span class="dot"></span>
+        <span>Running on port <code><script>document.write(location.port || 80)</script></code></span>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Decorative bottom wave -->
+  <svg class="wave" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,96L48,85.3C96,75,192,53,288,69.3C384,85,480,139,576,149.3C672,160,768,128,864,117.3C960,107,1056,117,1152,112C1248,107,1344,85,1392,74.7L1440,64L1440,220L1392,220C1344,220,1248,220,1152,220C1056,220,960,220,864,220C768,220,672,220,576,220C480,220,384,220,288,220C192,220,96,220,48,220L0,220Z"/>
+  </svg>
+
+  <script src="app.js"></script>
+</body>
+</html>
